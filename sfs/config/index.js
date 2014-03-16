@@ -32,7 +32,7 @@ var config = {
     port: 6379
   },
   nfs: require('sfs-client').create(sfsConfig),
-  syncModel: 'all'
+  syncModel: 'exist'
 };
 
 // load config/config.js, everything in config.js will cover the same key in index.js
