@@ -12,13 +12,27 @@ var sfsConfig = {
   logdir: logdir,
   port: 8081,
   nodes: [{ip: '127.0.0.1', port: 8081}],
-  credentials: ['sfsadmin', 'sfsadmin123'],
+  credentials: ['sfsadmin', 'sfsadmin123']
 };
 
 var config = {
   enableCluster: true,
+  syncByInstall: true,
   sfsConfig: sfsConfig,
-  nfs: require('sfs-client').create(sfsConfig)
+  mysqlServers: [
+    {
+      host: 'localhost',
+      port: 3306,
+      user: 'cnpm'
+    }
+  ],
+  mysqlDatabase: 'cnpm',
+  redis: {
+    host: 'localhost',
+    port: 6379
+  },
+  nfs: require('sfs-client').create(sfsConfig),
+  syncModel: 'all'
 };
 
 // load config/config.js, everything in config.js will cover the same key in index.js
@@ -30,6 +44,7 @@ if (fs.existsSync(customConfig)) {
     config[k] = options[k];
   }
 }
+
 
 mkdirp.sync(distdir);
 mkdirp.sync(logdir);
