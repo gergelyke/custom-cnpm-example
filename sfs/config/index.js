@@ -18,6 +18,7 @@ var sfsConfig = {
 var config = {
   enableCluster: true,
   syncByInstall: true,
+  enablePrivate: true,
   sfsConfig: sfsConfig,
   mysqlServers: [
     {
